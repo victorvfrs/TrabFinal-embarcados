@@ -1,0 +1,46 @@
+1https://embarcados.com.br/documentacao-de-codigo-doxygen/
+
+1)Compilação e flash do openthread para a placa atmel SAMR21
+  https://github.com/ufsm-barriquello/ot-samr21
+  Passos realizados com o código mínimo necessário para suportar o OpenThread
+    1)Baixar o GNU toolchain com os comandos no terminal: 
+      $ cd <path-to-ot-samr21>
+      $ ./script/bootstrap
+    2)Build
+      ASF já vem com o código de build:
+      Código:
+        $ cd <path-to-ot-samr21>
+        $./script/build
+    3)Flash Binary
+      After a successful build, the elf files are found in <path-to-ot-samr21>/build/bin/. Compiled binaries may be flashed onto the SAM R21 Xplained Pro using embedded debugger EDBG.
+        Código:
+          $ openocd -f board/atmel_samr21_xplained_pro.cfg
+          Leave the terminal open to monitor the status of the opencd server and open a new terminal.
+          In this terminal:
+          
+          $ cd <path-to-ot-samr21>/build/bin
+          $ arm-none-eabi-gdb ot-cli-ftd
+          $ (gdb) target remote 127.0.0.1:3333
+          $ (gdb) load
+          $ (gdb) monitor reset
+          $ (gdb) c
+    4)Forming a Thread network on the Thread Border Router (https://openthread.io/codelabs/esp-openthread-hardware#2)
+      Passo 4 em diante
+
+2)Compilação Openthread com RTOS no sistema Linux. Porém com falha na comunicação devido à maquina virtual, laboratório da ufsm não nos da acesso a senha do sistema ubuntu para testa-la
+  1)Linux simulation (https://github.com/ufsm-barriquello/ot-rtos)
+    Código: 
+      git submodule update --init
+      mkdir build && cd build
+      cmake .. -DPLATFORM_NAME=linux
+      make -j12
+
+      This will build the CLI test application in build/ot_cli_linux.
+  2)Compilação do Ot(Opentrhead) RTOS na placa Nordic nRF52840 (https://github.com/ufsm-barriquello/ot-rtos)
+    git submodule update --init
+    mkdir build && cd build
+    cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi.cmake -DPLATFORM_NAME=nrf52
+    make -j12
+
+    This will build the CLI test application in build/ot_cli_nrf52840.hex. You can flash the binary with nrfjprog(Download) and connecting to the nRF52840 DK serial port. 
+    This will also build the demo application in build/ot_demo_101. See the Demo 101 README for a description of the demo application.
