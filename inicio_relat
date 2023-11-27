@@ -37,10 +37,22 @@
 
       This will build the CLI test application in build/ot_cli_linux.
   2)Compilação do Ot(Opentrhead) RTOS na placa Nordic nRF52840 (https://github.com/ufsm-barriquello/ot-rtos)
-    git submodule update --init
-    mkdir build && cd build
-    cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi.cmake -DPLATFORM_NAME=nrf52
-    make -j12
+    1)Código:
+      git submodule update --init
+      mkdir build && cd build
+      cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi.cmake -DPLATFORM_NAME=nrf52
+      make -j12
 
-    This will build the CLI test application in build/ot_cli_nrf52840.hex. You can flash the binary with nrfjprog(Download) and connecting to the nRF52840 DK serial port. 
-    This will also build the demo application in build/ot_demo_101. See the Demo 101 README for a description of the demo application.
+      This will build the CLI test application in build/ot_cli_nrf52840.hex. You can flash the binary with nrfjprog(Download) and connecting to the nRF52840 DK serial port. 
+      This will also build the demo application in build/ot_demo_101. See the Demo 101 README for a description of the demo application.
+
+    2)https://github.com/ufsm-barriquello/ot-rtos/blob/main/examples/apps/demo_101/README.md
+      1)Install SEGGER J-Link
+        download Linux 64-bit DEB Installer
+      4. Set up the RCP Joiner
+        Código:
+          $ cd ~/src
+          $ git clone --recursive https://github.com/openthread/ot-nrf528xx.git
+          $ cd ot-nrf528xx
+          $ script/build nrf52840 USB_trans
+    
