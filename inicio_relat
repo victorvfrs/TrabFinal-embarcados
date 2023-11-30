@@ -55,4 +55,14 @@
           $ git clone --recursive https://github.com/openthread/ot-nrf528xx.git
           $ cd ot-nrf528xx
           $ script/build nrf52840 USB_trans
-    
+3) compilado o código do (https://github.com/ufsm-barriquello/ot-rtos)
+  git submodule update --init
+  mkdir build && cd build
+  cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi.cmake -DPLATFORM_NAME=nrf52 (SUbstitui nrf52  por samr21)
+  make -j12
+  Substitui o exemplo da placa nordic para a placa do samr21
+
+
+
+
+
