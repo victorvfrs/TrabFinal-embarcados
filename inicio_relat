@@ -61,6 +61,12 @@
   cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi.cmake -DPLATFORM_NAME=nrf52 (SUbstitui nrf52  por samr21)
   make -j12
   Substitui o exemplo da placa nordic para a placa do samr21
+4)CMAKEFILE da raíz do github (https://github.com/ufsm-barriquello/ot-rtos/blob/main/CMakeLists.txt)
+  Copiar o código if para nordic do CMAKEFILE no OT-RTOS e substituir nfr32 por samr21
+  Selecionar o caminho para o .ld que é third_party/microship/include/samr21x18a.ld
+
+5)Colocar a subpasta "microship" dentro da pasta "third_party" do SAMR21 para o third party do "OT-RTOS" 
+6) COlocar o fREErtosCONFIG.h de dentro da pasta third party do OT-RTOS
 
 
 
