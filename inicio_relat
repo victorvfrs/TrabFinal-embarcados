@@ -67,6 +67,11 @@
 
 5)Colocar a subpasta "microship" dentro da pasta "third_party" do SAMR21 para o third party do "OT-RTOS" 
 6) COlocar o fREErtosCONFIG.h de dentro da pasta third party do OT-RTOS
+7)colocar arquivo openthread/cli.h
+8)colocar arquivofreeRTOSconfig.h
+
+
+
 
 
 
